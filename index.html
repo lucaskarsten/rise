@@ -10,6 +10,7 @@
   body { background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 32px 16px; }
   h1 { margin-bottom: 0; } h1 + p { color: var(--muted); margin-top: 4px; }
   h2 { color: var(--accent); font-size: 1.1em; margin-top: 2em; }
+  figure { margin: 1.5em 0; } figure img { width: 100%; height: auto; border-radius: 8px; border: 1px solid #333; } figcaption { color: var(--muted); font-size: .85em; }
   footer { color: var(--muted); font-size: .85em; margin-top: 3em; }
 </style>
 </head>
@@ -23,6 +24,10 @@
   <li><b>In game:</b> a small overlay with the game plan for the lane and timely reminders.</li>
   <li><b>After the game:</b> reviews the match (deaths, CS, objectives) and tracks the player's recurring mistakes over time.</li>
 </ul>
+
+<figure><img src="img/champ-select.png" alt="Game plan for the lane: matchup, win conditions and plan by level" width="1500" height="1140" loading="lazy"><figcaption>Before the game: the plan for the lane, with runes and items applied to the client.</figcaption></figure>
+<figure><img src="img/in-game.png" alt="In-game view with timely reminders and the current lane phase" width="1500" height="1140" loading="lazy"><figcaption>In game: what to do right now and short reminders.</figcaption></figure>
+<figure><img src="img/post-game.png" alt="Post-game review with grade, strengths, mistakes and focus for the next game" width="1500" height="1140" loading="lazy"><figcaption>After the game: the review and one focus for the next match.</figcaption></figure>
 
 <h2>Riot Games API usage</h2>
 <ul>
