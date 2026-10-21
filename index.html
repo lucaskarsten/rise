@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rise — League of Legends companion</title>
+<style>
+  :root { --bg: #fff; --fg: #1a1a1a; --muted: #555; --accent: #c8102e; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #111; --fg: #eee; --muted: #aaa; --accent: #ff4d5e; } }
+  body { background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 32px 16px; }
+  h1 { margin-bottom: 0; } h1 + p { color: var(--muted); margin-top: 4px; }
+  h2 { color: var(--accent); font-size: 1.1em; margin-top: 2em; }
+  footer { color: var(--muted); font-size: .85em; margin-top: 3em; }
+</style>
+</head>
+<body>
+<h1>Rise</h1>
+<p>A desktop companion app that helps League of Legends players improve, game by game.</p>
+
+<h2>What it does</h2>
+<ul>
+  <li><b>Champion select:</b> suggests picks, runes, items and summoner spells from aggregated winrates for the player's elo, role and lane matchup.</li>
+  <li><b>In game:</b> a small overlay with the game plan for the lane and timely reminders.</li>
+  <li><b>After the game:</b> reviews the match (deaths, CS, objectives) and tracks the player's recurring mistakes over time.</li>
+</ul>
+
+<h2>Riot Games API usage</h2>
+<ul>
+  <li><b>league-v4, match-v5:</b> sample ranked solo games from the ladder to compute champion, matchup, item and spell winrates.</li>
+  <li><b>champion-mastery-v4:</b> focus sampling on the champions the user plays.</li>
+  <li><b>account-v1:</b> resolve the user's own Riot ID.</li>
+  <li>The local League client (LCU) is read only for the user's own session.</li>
+</ul>
+
+<h2>Privacy</h2>
+<p>Only aggregated statistics are stored. No personal data of other players is kept or shown. The user's own match history stays on their computer.</p>
+
+<footer>Rise isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</footer>
+</body>
+</html>
