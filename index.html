@@ -4,45 +4,121 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rise — League of Legends companion</title>
+<meta name="description" content="A desktop companion that helps League of Legends players improve, game by game.">
+<link rel="icon" href="img/rise.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Saira+Condensed:wght@700;900&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #fff; --fg: #1a1a1a; --muted: #555; --accent: #c8102e; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #111; --fg: #eee; --muted: #aaa; --accent: #ff4d5e; } }
-  body { background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 32px 16px; }
-  h1 { margin-bottom: 0; } h1 + p { color: var(--muted); margin-top: 4px; }
-  h2 { color: var(--accent); font-size: 1.1em; margin-top: 2em; }
-  figure { margin: 1.5em 0; } figure img { width: 100%; height: auto; border-radius: 8px; border: 1px solid #333; } figcaption { color: var(--muted); font-size: .85em; }
-  footer { color: var(--muted); font-size: .85em; margin-top: 3em; }
+  /* Same palette as the app (DESIGN.md): broadcast black, one red accent, teal logo */
+  :root {
+    --bg: #050607; --panel: #0d0f12; --panel2: #16191d; --line: #1f2328;
+    --text: #e6e8eb; --dim: #949398; --strong: #fff;
+    --accent: #ff4655; --accent-light: #ff7a85; --glow: #3a0a12; --teal: #03bfb5;
+    --cut: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 Inter, "Segoe UI", system-ui, sans-serif;
+    background-image: radial-gradient(60% 40% at 80% 0%, var(--glow), transparent 70%);
+    background-repeat: no-repeat;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  a { color: var(--accent-light); }
+
+  header { padding: 56px 0 40px; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand img { width: 56px; height: 56px; }
+  h1 { font: 900 clamp(56px, 10vw, 96px)/.9 "Saira Condensed", "Arial Narrow", sans-serif; letter-spacing: .01em; margin: 0; color: var(--strong); text-transform: uppercase; }
+  .tagline { font-size: clamp(18px, 2.4vw, 22px); color: var(--text); max-width: 640px; margin: 20px 0 0; }
+  .tagline b { color: var(--strong); }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .pill { border: 1px solid var(--line); background: var(--panel); color: var(--dim); border-radius: 99px; padding: 4px 14px; font-size: 14px; }
+
+  .lbl { display: block; font-size: 12px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--accent); }
+  h2 { font: 700 clamp(28px, 4vw, 36px)/1.1 "Saira Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; color: var(--strong); margin: 6px 0 12px; }
+  section { padding: 40px 0; border-top: 1px solid var(--line); }
+  section > p { color: var(--dim); max-width: 680px; margin: 0 0 24px; }
+
+  .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  figure { margin: 0; background: var(--panel); clip-path: var(--cut); }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { padding: 12px 16px 16px; color: var(--dim); font-size: 14px; }
+  figcaption b { color: var(--strong); display: block; font-size: 15px; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .card { background: var(--panel); padding: 20px 24px; clip-path: var(--cut); border-top: 2px solid var(--accent); }
+  .card h3 { margin: 0 0 6px; font-size: 16px; color: var(--strong); }
+  .card p, .card ul { margin: 0; color: var(--dim); font-size: 15px; }
+  .card ul { padding-left: 18px; }
+  .card code { color: var(--text); background: var(--panel2); padding: 0 4px; font-size: 13px; }
+
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); color: var(--dim); font-size: 13px; }
+
+  @media (max-width: 760px) {
+    .shots, .grid { grid-template-columns: 1fr; }
+    header { padding-top: 32px; }
+  }
 </style>
 </head>
 <body>
-<h1>Rise</h1>
-<p>A desktop companion app that helps League of Legends players improve, game by game.</p>
+<div class="wrap">
 
-<h2>What it does</h2>
-<ul>
-  <li><b>Champion select:</b> suggests picks, runes, items and summoner spells from aggregated winrates for the player's elo, role and lane matchup.</li>
-  <li><b>Hover cards:</b> the full in-game description of every suggested item, rune, stat shard, summoner spell and ability (stats, effects, cooldown, cost, price and recipe), so the player learns why each choice matters.</li>
-  <li><b>In game:</b> a small overlay with the game plan for the lane and timely reminders, including the next item to buy and how much gold is still missing for it.</li>
-  <li><b>After the game:</b> reviews the match (deaths, CS, objectives) and tracks the player's recurring mistakes over time.</li>
-</ul>
+<header>
+  <div class="brand"><img src="img/rise.svg" alt=""><h1>Rise</h1></div>
+  <p class="tagline">A desktop companion that helps League of Legends players improve, game by game. It rewards <b>playing well</b>, not only winning.</p>
+  <div class="pills"><span class="pill">Champion select</span><span class="pill">In game</span><span class="pill">Post game</span><span class="pill">Personal coach</span></div>
+</header>
 
-<figure><img src="img/champ-select.png" alt="Game plan for the lane: matchup, win conditions and plan by level" width="1500" height="1140" loading="lazy"><figcaption>Before the game: the plan for the lane, with runes and items applied to the client.</figcaption></figure>
-<figure><img src="img/hover-cards.png" alt="Hover card with the full description of the suggested keystone rune" width="1500" height="1140" loading="lazy"><figcaption>Hover any item, rune, spell or ability for its full description.</figcaption></figure>
-<figure><img src="img/in-game.png" alt="In-game view with timely reminders and the current lane phase" width="1500" height="1140" loading="lazy"><figcaption>In game: what to do right now and short reminders.</figcaption></figure>
-<figure><img src="img/post-game.png" alt="Post-game review with grade, strengths, mistakes and focus for the next game" width="1500" height="1140" loading="lazy"><figcaption>After the game: the review and one focus for the next match.</figcaption></figure>
+<section>
+  <span class="lbl">Before the game</span>
+  <h2>A plan for your lane</h2>
+  <p>Picks, runes, items and summoner spells from aggregated winrates for your elo, role and matchup, applied straight to the client. Hover anything for its full in-game description: stats, effects, cooldown, cost, price and recipe.</p>
+  <div class="shots">
+    <figure><img src="img/champ-select.png" alt="Lane plan: matchup, win conditions and plan by level" width="1500" height="1140" loading="lazy"><figcaption><b>Lane plan</b>Matchup, win conditions and what to do at each level.</figcaption></figure>
+    <figure><img src="img/hover-cards.png" alt="Hover card with the full description of the suggested keystone rune" width="1500" height="1140" loading="lazy"><figcaption><b>Hover cards</b>Every item, rune, spell and ability, explained.</figcaption></figure>
+  </div>
+</section>
 
-<h2>Riot Games API usage</h2>
-<ul>
-  <li><b>league-v4, match-v5:</b> sample ranked solo games from the ladder to compute champion, matchup, item and spell winrates.</li>
-  <li><b>champion-mastery-v4:</b> focus sampling on the champions the user plays.</li>
-  <li><b>account-v1:</b> resolve the user's own Riot ID.</li>
-  <li>The local League client (LCU) is read only for the user's own session, and the Live Client Data API (localhost) only during the user's own game.</li>
-  <li><b>Static game data:</b> Data Dragon for champions, items, runes, summoner spells and their descriptions; CommunityDragon for stat shard texts. No API key is used for these.</li>
-</ul>
+<section>
+  <span class="lbl">In game</span>
+  <h2>What to do right now</h2>
+  <p>A small overlay with the current lane phase and short, timely reminders: objectives about to spawn, enemies missing, and the next item to buy with the gold still missing for it.</p>
+</section>
 
-<h2>Privacy</h2>
-<p>Only aggregated statistics are stored. No personal data of other players is kept or shown. The user's own match history stays on their computer.</p>
+<section>
+  <span class="lbl">After the game</span>
+  <h2>Learn from every match</h2>
+  <p>A review of the game (deaths, CS, objectives) with a grade that measures how well you played against your lane opponent, and one focus for the next match. Your profile tracks your form, matches and recurring mistakes over time.</p>
+  <div class="shots">
+    <figure><img src="img/post-game.png" alt="Post-game review with grade, strengths, mistakes and focus for the next game" width="1500" height="1140" loading="lazy"><figcaption><b>Post game</b>Grade, what went well, what to fix.</figcaption></figure>
+    <figure><img src="img/perfil.png" alt="Profile with form, rank and recent performance" width="1500" height="1140" loading="lazy"><figcaption><b>Profile</b>Your form and rank over time.</figcaption></figure>
+    <figure><img src="img/partidas.png" alt="Match list with grade and result of each game" width="1500" height="1140" loading="lazy"><figcaption><b>Matches</b>Every game with its grade and review.</figcaption></figure>
+    <figure><img src="img/coach.png" alt="Coach with the focus of the week and lessons from recent games" width="1500" height="1140" loading="lazy"><figcaption><b>Coach</b>The focus of the week, from your own games.</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <span class="lbl">Under the hood</span>
+  <h2>Riot Games API usage</h2>
+  <div class="grid">
+    <div class="card"><h3>Riot API</h3><ul>
+      <li><code>league-v4</code>, <code>match-v5</code>: sample ranked solo games from the ladder to compute champion, matchup, item and spell winrates.</li>
+      <li><code>champion-mastery-v4</code>: focus sampling on the champions the user plays.</li>
+      <li><code>account-v1</code>: resolve the user's own Riot ID.</li>
+    </ul></div>
+    <div class="card"><h3>Local and static data</h3><ul>
+      <li>The local League client (LCU) is read only for the user's own session.</li>
+      <li>The Live Client Data API (localhost) only during the user's own game.</li>
+      <li>Data Dragon for champions, items, runes and spells; CommunityDragon for stat shard texts. No API key is used for these.</li>
+    </ul></div>
+    <div class="card"><h3>Privacy</h3><p>Only aggregated statistics are stored. No personal data of other players is kept or shown. The user's own match history stays on their computer.</p></div>
+    <div class="card"><h3>Screenshots</h3><p>Profile, matches and coach screenshots use a fictional demo account.</p></div>
+  </div>
+</section>
 
 <footer>Rise isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</footer>
+
+</div>
 </body>
 </html>
