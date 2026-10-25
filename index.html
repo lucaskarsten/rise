@@ -72,7 +72,7 @@
 <header>
   <div class="brand"><img src="img/rise.svg" alt=""><h1>Rise</h1></div>
   <p class="tagline">A desktop companion for League of Legends that helps players <b>prepare each match</b> and <b>learn from their own games</b>.</p>
-  <div class="pills"><span class="pill">Windows desktop app</span><span class="pill">Champion select</span><span class="pill">Post game</span><span class="pill">Personal project, in development</span></div>
+  <div class="pills"><span class="pill">Windows desktop app</span><span class="pill">Champion select</span><span class="pill">Post game</span></div>
   <p class="notice">Rise isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
 </header>
 
@@ -82,7 +82,7 @@
   <div class="grid">
     <div class="card"><h3>1. Open with the League client</h3><p>Rise runs on the player’s computer next to the League client and reads only the player’s own session.</p></div>
     <div class="card"><h3>2. Champion select</h3><p>A plan for the lane with runes, items, spells and skill order, built from aggregated ranked data. Rise writes the suggested rune page and item set to the client; the player can change or ignore them.</p></div>
-    <div class="card"><h3>3. During the game</h3><p>Short reminders from the Live Client Data API, using only what the player can already see in the game: objective timers, the planned next item and the gold still needed.</p></div>
+    <div class="card"><h3>3. During the game</h3><p>Short reminders using only what the player can already see in the game: objective timers and the next planned item.</p></div>
     <div class="card"><h3>4. After the game</h3><p>A review of the player’s own match (deaths, CS, gold and XP against the lane opponent) and one focus for the next game.</p></div>
   </div>
 </section>
@@ -90,7 +90,7 @@
 <section>
   <span class="lbl">Before the game</span>
   <h2>A plan for your lane</h2>
-  <p>Suggestions with the reason for each one, so the player decides. Hover any item, rune, stat shard, summoner spell or ability for its full description from Riot’s static data.</p>
+  <p>Suggestions with the reason for each one, so the player decides. Hover any item, rune, spell or ability for its full description.</p>
   <div class="shots">
     <figure><img src="img/champ-select.png" alt="Lane plan: matchup, win conditions, runes, items and plan by level" width="1500" height="1140" loading="lazy"><figcaption><b>Lane plan</b>Matchup, win conditions and options for each phase of the lane.</figcaption></figure>
     <figure><img src="img/hover-cards.png" alt="Hover card with the full description of the suggested keystone rune" width="1500" height="1140" loading="lazy"><figcaption><b>Hover cards</b>Every item, rune, spell and ability, explained.</figcaption></figure>
@@ -112,30 +112,11 @@
   <span class="lbl">Fair play</span>
   <h2>What Rise doesn’t do</h2>
   <div class="grid">
-    <div class="card"><h3>No memory reading, no automation</h3><p>Rise never reads or changes game memory and never plays or clicks for the player. It works with Vanguard through Riot’s official local APIs.</p></div>
-    <div class="card"><h3>No hidden information</h3><p>In game, Rise only uses what the Live Client Data API exposes to the player, which is already visible in the game.</p></div>
+    <div class="card"><h3>No memory reading, no automation</h3><p>Rise never reads or changes game memory and never plays or clicks for the player. </p></div>
+    <div class="card"><h3>No hidden information</h3><p>Rise only shows what the player can already see in the game or client.</p></div>
   </div>
 </section>
 
-<section>
-  <span class="lbl">Under the hood</span>
-  <h2>Riot Games API usage</h2>
-  <div class="grid">
-    <div class="card"><h3>Riot API</h3><ul>
-      <li><code>league-v4</code>, <code>match-v5</code>: sample ranked solo games from the ladder to compute aggregate champion, matchup, item and spell statistics, and read the player’s own matches.</li>
-      <li><code>champion-mastery-v4</code>: focus sampling on the champions the player uses.</li>
-      <li><code>lol-status-v4</code>: check that the API key is valid.</li>
-    </ul></div>
-    <div class="card"><h3>League Client (LCU), own session only</h3><ul>
-      <li><code>lol-gameflow</code>, <code>lol-summoner</code>, <code>lol-lobby</code>, <code>lol-ranked</code>: current phase, the player’s Riot ID and rank.</li>
-      <li><code>lol-champ-select</code>: the player’s pick and the lane matchup.</li>
-      <li><code>lol-perks</code>, <code>lol-item-sets</code>: write the rune page and item set the player chose to apply.</li>
-      <li><code>lol-match-history</code>, <code>lol-champion-mastery</code>, <code>lol-replays</code>: the player’s own games, mastery and replays.</li>
-    </ul></div>
-    <div class="card"><h3>In game</h3><p>Live Client Data API on localhost, only during the player’s own game.</p></div>
-    <div class="card"><h3>Static data</h3><p>Data Dragon for champions, items, runes, spells and their descriptions; CommunityDragon for stat shard texts. No API key is used for these.</p></div>
-  </div>
-</section>
 
 <section>
   <span class="lbl">Privacy</span>
