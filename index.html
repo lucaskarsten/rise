@@ -21,11 +21,13 @@
 <h2>What it does</h2>
 <ul>
   <li><b>Champion select:</b> suggests picks, runes, items and summoner spells from aggregated winrates for the player's elo, role and lane matchup.</li>
-  <li><b>In game:</b> a small overlay with the game plan for the lane and timely reminders.</li>
+  <li><b>Hover cards:</b> the full in-game description of every suggested item, rune, stat shard, summoner spell and ability (stats, effects, cooldown, cost, price and recipe), so the player learns why each choice matters.</li>
+  <li><b>In game:</b> a small overlay with the game plan for the lane and timely reminders, including the next item to buy and how much gold is still missing for it.</li>
   <li><b>After the game:</b> reviews the match (deaths, CS, objectives) and tracks the player's recurring mistakes over time.</li>
 </ul>
 
 <figure><img src="img/champ-select.png" alt="Game plan for the lane: matchup, win conditions and plan by level" width="1500" height="1140" loading="lazy"><figcaption>Before the game: the plan for the lane, with runes and items applied to the client.</figcaption></figure>
+<figure><img src="img/hover-cards.png" alt="Hover card with the full description of the suggested keystone rune" width="1500" height="1140" loading="lazy"><figcaption>Hover any item, rune, spell or ability for its full description.</figcaption></figure>
 <figure><img src="img/in-game.png" alt="In-game view with timely reminders and the current lane phase" width="1500" height="1140" loading="lazy"><figcaption>In game: what to do right now and short reminders.</figcaption></figure>
 <figure><img src="img/post-game.png" alt="Post-game review with grade, strengths, mistakes and focus for the next game" width="1500" height="1140" loading="lazy"><figcaption>After the game: the review and one focus for the next match.</figcaption></figure>
 
@@ -34,7 +36,8 @@
   <li><b>league-v4, match-v5:</b> sample ranked solo games from the ladder to compute champion, matchup, item and spell winrates.</li>
   <li><b>champion-mastery-v4:</b> focus sampling on the champions the user plays.</li>
   <li><b>account-v1:</b> resolve the user's own Riot ID.</li>
-  <li>The local League client (LCU) is read only for the user's own session.</li>
+  <li>The local League client (LCU) is read only for the user's own session, and the Live Client Data API (localhost) only during the user's own game.</li>
+  <li><b>Static game data:</b> Data Dragon for champions, items, runes, summoner spells and their descriptions; CommunityDragon for stat shard texts. No API key is used for these.</li>
 </ul>
 
 <h2>Privacy</h2>
