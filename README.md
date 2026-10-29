@@ -37,6 +37,14 @@
   <img src="img/coach.png" width="49%" alt="Weekly coach theme, lessons and drills">
 </p>
 
+## Built for the long run
+
+- **Honest numbers.** Win rates come with a 95% margin of error and the number of games, and Rise warns when a sample is too small to mean much.
+- **Advantage curve.** For each saved match, your team's gold and XP lead minute by minute, with the deaths and the biggest drop.
+- **Season summary.** Wins by time of day, after a loss, by game length and by champion.
+- **Separate accounts.** Profile, grades, goals and rank follow the account open in the client.
+- **Your pace.** An optional daily game limit and a gentle break reminder: they suggest, never block.
+
 ## Every role, two languages
 
 Top, jungle, mid, ADC and support each get their own coaching notes, live alerts and ward tips. The whole app, including the coach's texts, is available in **Portuguese (Brazil)** and **English**.
